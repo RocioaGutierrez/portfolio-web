@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useState, useRef, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Globe, LinkedinIcon, Mail, MessageCircle, Menu, X, Sun, Moon } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -23,6 +23,25 @@ export default function Layout({ children, setIsExperienceVisible }: LayoutProps
   const navigate = useNavigate();
   const isHome = location.pathname === '/';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const mobileTickerRef = useRef<HTMLDivElement>(null);
+  const isDragging = useRef(false);
+  const animFrameRef = useRef<number>(0);
+
+  useEffect(() => {
+    const el = mobileTickerRef.current;
+    if (!el) return;
+    const speed = 0.6;
+    const animate = () => {
+      if (!isDragging.current && el) {
+        el.scrollLeft += speed;
+        if (el.scrollLeft >= el.scrollWidth / 2) el.scrollLeft = 0;
+      }
+      animFrameRef.current = requestAnimationFrame(animate);
+    };
+    animFrameRef.current = requestAnimationFrame(animate);
+    return () => { if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current); };
+  }, []);
 
   const handleExperienceClick = () => {
     setIsMenuOpen(false);
@@ -212,10 +231,15 @@ export default function Layout({ children, setIsExperienceVisible }: LayoutProps
             </div>
           </div>
         </div>
-        {/* Mobile: touch-scrollable */}
-        <div className="md:hidden overflow-x-auto scrollbar-hide">
+        {/* Mobile: auto-scroll + touch draggable */}
+        <div
+          ref={mobileTickerRef}
+          className="md:hidden overflow-x-auto scrollbar-hide"
+          onTouchStart={() => { isDragging.current = true; }}
+          onTouchEnd={() => { setTimeout(() => { isDragging.current = false; }, 300); }}
+        >
           <div className="flex items-center gap-10 px-6 whitespace-nowrap">
-            {TECH_STACK.map((tech, i) => (
+            {[...TECH_STACK, ...TECH_STACK].map((tech, i) => (
               <span key={`tech-m-${i}`} className="text-xs font-bold uppercase tracking-widest whitespace-nowrap flex items-center gap-4">
                 {tech}
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-accent/40" />
