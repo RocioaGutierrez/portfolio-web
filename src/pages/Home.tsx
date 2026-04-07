@@ -125,7 +125,7 @@ export default function Home() {
           </section>
 
           {/* 2. Sobre Mí (Brief) */}
-          <section id="sobre-mi" className="min-h-screen flex flex-col justify-center py-24 px-6 md:px-12 lg:px-20 relative">
+          <section id="sobre-mi" className="flex flex-col justify-center py-16 lg:min-h-screen lg:py-24 px-6 md:px-12 lg:px-20 relative">
             <div className="absolute right-0 top-1/2 w-96 h-96 bg-brand-accent/5 blur-[120px] rounded-full -z-10 translate-x-1/2 -translate-y-1/2"></div>
             
             <div className="max-w-xl">
@@ -143,8 +143,16 @@ export default function Home() {
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
 
-                  <button 
-                    onClick={() => setIsExperienceVisible(!isExperienceVisible)}
+                  <button
+                    onClick={() => {
+                      const next = !isExperienceVisible;
+                      setIsExperienceVisible(next);
+                      if (next) {
+                        setTimeout(() => {
+                          document.getElementById('experiencia')?.scrollIntoView({ behavior: 'smooth' });
+                        }, 400);
+                      }
+                    }}
                     className="inline-flex items-center gap-2 text-brand-accent font-bold hover:gap-3 transition-all group"
                   >
                     <span>{isExperienceVisible ? t.about.experienceToggleClose : t.about.experienceToggle}</span>
@@ -248,7 +256,7 @@ export default function Home() {
                   <button
                     key={idx}
                     onClick={() => setSelectedService(idx)}
-                    className="glass-card p-8 rounded-3xl group cursor-pointer hover:border-brand-green/40 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden w-full text-left"
+                    className="glass-card p-5 md:p-8 rounded-3xl group cursor-pointer hover:border-brand-green/40 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden w-full text-left"
                   >
                     {/* Hover Glow Effect inside card */}
                     <div className="absolute inset-0 bg-gradient-to-r from-brand-green/0 via-brand-green/5 to-brand-green/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -256,8 +264,8 @@ export default function Home() {
                     <div className="w-14 h-14 rounded-2xl bg-brand-green/10 border border-brand-green/20 text-brand-accent flex items-center justify-center mb-6 shadow-[0_0_15px_rgba(16,185,129,0.15)] group-hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all">
                       {[<Settings key="0" className="w-7 h-7" />, <Target key="1" className="w-7 h-7" />, <ShieldCheck key="2" className="w-7 h-7" />][idx]}
                     </div>
-                    <h3 className="text-xl font-bold mb-4 group-hover:text-brand-accent transition-colors relative z-10">{service.title}</h3>
-                    <p className="text-brand-muted mb-8 leading-relaxed relative z-10">
+                    <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 group-hover:text-brand-accent transition-colors relative z-10">{service.title}</h3>
+                    <p className="text-sm md:text-base text-brand-muted mb-6 md:mb-8 leading-relaxed relative z-10">
                       {service.summary}
                     </p>
                     <span
