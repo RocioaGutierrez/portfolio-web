@@ -215,7 +215,7 @@ export const translations = {
       }
     },
     cta: {
-      title: "Si estás buscando un socio estratégico para escalar tu",
+      title: "Si estás buscando una socia estratégica para escalar tu",
       titleHighlight: "operación...",
       description: "Hablemos sobre cómo podemos trabajar juntos para lograr resultados reales.",
       whatsapp: "Contactar por WhatsApp",
