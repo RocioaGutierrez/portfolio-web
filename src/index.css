@@ -59,6 +59,15 @@
   }
 }
 
+/* Hide scrollbar for touch ticker */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* Prevent horizontal overflow on mobile */
 html, body {
   overflow-x: hidden;

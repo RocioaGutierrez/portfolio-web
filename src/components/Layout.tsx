@@ -100,13 +100,29 @@ export default function Layout({ children, setIsExperienceVisible }: LayoutProps
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden text-brand-text p-2"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {/* Mobile: theme + lang + hamburger */}
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              className="flex items-center justify-center text-brand-muted hover:text-brand-green transition-colors w-9 h-9 rounded-lg border border-brand-green/20"
+              title="Cambiar tema"
+            >
+              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
+            <button
+              onClick={() => setLang(lang === "es" ? "en" : "es")}
+              className="flex items-center gap-1 text-sm font-semibold text-brand-green px-2.5 py-1.5 rounded-lg border border-brand-green/20"
+            >
+              <Globe className="w-4 h-4" />
+              {lang === "es" ? "EN" : "ES"}
+            </button>
+            <button
+              className="text-brand-text p-2"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation Overlay */}
@@ -174,21 +190,33 @@ export default function Layout({ children, setIsExperienceVisible }: LayoutProps
       </nav>
 
       {/* Tech Stack Sub-header */}
-      <div className="sticky top-20 z-40 bg-brand-green/80 backdrop-blur-md text-white/90 py-2.5 border-b border-brand-text/10 overflow-hidden select-none">
-        <div className="flex whitespace-nowrap animate-scroll">
-          {/* First set of items */}
-          <div className="flex items-center gap-12 px-6">
-            {TECH_STACK.map((tech, i) => (
-              <span key={`tech-1-${i}`} className="text-xs font-bold uppercase tracking-widest whitespace-nowrap flex items-center gap-4">
-                {tech}
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-accent/40" />
-              </span>
-            ))}
+      <div className="sticky top-20 z-40 bg-brand-green/80 backdrop-blur-md text-white/90 py-2.5 border-b border-brand-text/10 select-none">
+        {/* Desktop: animated marquee */}
+        <div className="hidden md:block overflow-hidden">
+          <div className="flex whitespace-nowrap animate-scroll">
+            <div className="flex items-center gap-12 px-6">
+              {TECH_STACK.map((tech, i) => (
+                <span key={`tech-1-${i}`} className="text-xs font-bold uppercase tracking-widest whitespace-nowrap flex items-center gap-4">
+                  {tech}
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-accent/40" />
+                </span>
+              ))}
+            </div>
+            <div className="flex items-center gap-12 px-6">
+              {TECH_STACK.map((tech, i) => (
+                <span key={`tech-2-${i}`} className="text-xs font-bold uppercase tracking-widest whitespace-nowrap flex items-center gap-4">
+                  {tech}
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-accent/40" />
+                </span>
+              ))}
+            </div>
           </div>
-          {/* Duplicate set for seamless loop */}
-          <div className="flex items-center gap-12 px-6">
+        </div>
+        {/* Mobile: touch-scrollable */}
+        <div className="md:hidden overflow-x-auto scrollbar-hide">
+          <div className="flex items-center gap-10 px-6 whitespace-nowrap">
             {TECH_STACK.map((tech, i) => (
-              <span key={`tech-2-${i}`} className="text-xs font-bold uppercase tracking-widest whitespace-nowrap flex items-center gap-4">
+              <span key={`tech-m-${i}`} className="text-xs font-bold uppercase tracking-widest whitespace-nowrap flex items-center gap-4">
                 {tech}
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-accent/40" />
               </span>
