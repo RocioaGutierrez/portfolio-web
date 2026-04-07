@@ -414,11 +414,9 @@ export default function Home() {
               loading="lazy"
               referrerPolicy="no-referrer"
             />
-            {/* Soft Edge Blending Overlays for Mobile */}
+            {/* Soft Edge Blending — top and bottom only */}
             <div className="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-brand-bg via-brand-bg/30 to-transparent pointer-events-none"></div>
             <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-brand-bg via-brand-bg/30 to-transparent pointer-events-none"></div>
-            <div className="absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-brand-bg via-brand-bg/30 to-transparent pointer-events-none"></div>
-            <div className="absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-brand-bg via-brand-bg/30 to-transparent pointer-events-none"></div>
           </div>
         </div>
       </div>
