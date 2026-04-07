@@ -102,19 +102,19 @@ export default function Home() {
                 <div className="w-12 h-12 rounded-full bg-brand-green flex-shrink-0 flex items-center justify-center text-white font-bold text-sm shadow-[0_0_15px_rgba(16,185,129,0.3)]">
                   RG
                 </div>
-                <div className="relative glass-card p-6 md:p-8 rounded-[2rem] rounded-tl-none border-brand-green/20">
+                <div className="relative glass-card p-6 md:p-8 rounded-[2rem] rounded-tl-none border-brand-green/20 flex-1">
                   <p className="text-base md:text-lg text-brand-text font-medium leading-relaxed">
                     {t.value.text}
                   </p>
                 </div>
               </motion.div>
 
-              <div>
+              <div className="w-full">
                 <a
                   href="https://wa.me/5491159155766"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-3 bg-brand-green text-white px-10 py-5 rounded-full font-bold hover:bg-brand-accent transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.4)] group text-base md:text-lg"
+                  className="flex items-center justify-center gap-3 bg-brand-green text-white px-10 py-5 rounded-full font-bold hover:bg-brand-accent transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.4)] group text-base md:text-lg md:inline-flex md:w-auto"
                 >
                   {t.hero.cta}
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
@@ -154,6 +154,22 @@ export default function Home() {
               </div>
             </div>
           </section>
+
+          {/* Mobile Photo — below Sobre Mí, hidden on desktop */}
+          <div className="lg:hidden w-full relative overflow-hidden" style={{ height: '80vw' }}>
+            <div className="absolute inset-0">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-brand-green/20 blur-[80px] rounded-full -z-10"></div>
+              <img
+                src="/fotos/office_photo.png"
+                alt="Rocío Gutiérrez — Consultora IT, Procesos y LegalOps"
+                className="w-full h-full object-cover object-top grayscale opacity-90"
+                loading="lazy"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-brand-bg via-brand-bg/30 to-transparent pointer-events-none"></div>
+              <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-brand-bg via-brand-bg/30 to-transparent pointer-events-none"></div>
+            </div>
+          </div>
 
           {/* Experience Section (Conditional) */}
           <AnimatePresence>
@@ -403,22 +419,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Mobile Photo (Shown at end on mobile) */}
-        <div className="lg:hidden w-full relative overflow-hidden" style={{ height: '70vw' }}>
-          <div className="absolute inset-0">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-brand-green/20 blur-[80px] rounded-full -z-10"></div>
-            <img
-              src="/fotos/office_photo.png"
-              alt="Rocío Gutiérrez — Consultora IT, Procesos y LegalOps"
-              className="w-full h-full object-cover object-top grayscale opacity-90"
-              loading="lazy"
-              referrerPolicy="no-referrer"
-            />
-            {/* Soft Edge Blending — top and bottom only */}
-            <div className="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-brand-bg via-brand-bg/30 to-transparent pointer-events-none"></div>
-            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-brand-bg via-brand-bg/30 to-transparent pointer-events-none"></div>
-          </div>
-        </div>
       </div>
 
       {/* Scroll indicator — fixed centered */}
