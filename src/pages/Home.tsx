@@ -87,9 +87,11 @@ export default function Home() {
               </span>
               
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-brand-text mb-12 leading-[1.1] tracking-tight">
-                <span className="block mb-2">Procesos claros.</span>
-                <span className="block mb-2 text-brand-green text-glow">Tecnología útil.</span>
-                <span className="block">Resultados reales.</span>
+                {t.hero.title.split('. ').filter(Boolean).map((line, i, arr) => (
+                  <span key={i} className={`block mb-2${i === 1 ? ' text-brand-green text-glow' : ''}`}>
+                    {line}{i < arr.length - 1 ? '.' : ''}
+                  </span>
+                ))}
               </h1>
 
               {/* Chat Bubble Style Value Prop */}
