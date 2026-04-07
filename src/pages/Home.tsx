@@ -403,14 +403,14 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Mobile Photo (Shown between Hero and About) */}
-        <div className="lg:hidden w-full aspect-[3/4] bg-transparent relative overflow-hidden my-8 px-4">
-          <div className="absolute inset-0 flex items-center justify-center">
+        {/* Mobile Photo (Shown at end on mobile) */}
+        <div className="lg:hidden w-full relative overflow-hidden" style={{ height: '70vw' }}>
+          <div className="absolute inset-0">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-brand-green/20 blur-[80px] rounded-full -z-10"></div>
             <img
-              src="/fotos/20230427_132626.jpg"
+              src="/fotos/office_photo.png"
               alt="Rocío Gutiérrez — Consultora IT, Procesos y LegalOps"
-              className="h-full w-full object-contain grayscale opacity-90"
+              className="w-full h-full object-cover object-top grayscale opacity-90"
               loading="lazy"
               referrerPolicy="no-referrer"
             />
